@@ -19,3 +19,17 @@ Route::get('/', function () {
 });
 
 Route::resource('tree', TreeController::class);
+
+Auth::routes();
+
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+
+
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth'])->name('dashboard');
+//
+//require __DIR__ . '/auth.php';
+//
+//Auth::routes();
+//

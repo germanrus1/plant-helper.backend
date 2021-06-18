@@ -15,7 +15,6 @@ class TreeController extends Controller
 
     public function index()
     {
-        echo 'test';die;
         $trees = Tree::latest()->paginate(5);
 
         return view('tree.index', compact('trees'));

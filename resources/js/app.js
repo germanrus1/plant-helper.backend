@@ -4,11 +4,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+// require('./bootstrap');
 
 import { createApp } from 'vue';
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
 
-// Vue 3
 let app=createApp({})
-app.component('example-component', require('./components/ExampleComponent.vue').default);
+app.component('main-component', require('./components/Main.vue').default);
 app.mount("#app")

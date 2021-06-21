@@ -1,14 +1,16 @@
 <?php
 
+
 namespace App\Http\Controllers;
+
 
 use App\Models\PlantFamilies;
 use App\Models\Plants;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
 
-class PlantsController extends Controller
+class PublicPlantsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,10 +31,6 @@ class PlantsController extends Controller
      */
     public function create()
     {
-        return view('admin.plants.create', [
-            'plant' => new Plants(),
-            'families' => PlantFamilies::all(),
-        ]);
     }
 
     /**
@@ -43,27 +41,6 @@ class PlantsController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $validator = Validator::make($input, [
-            'name' => 'required|max:255',
-            'description' => 'string',
-            'tags' => 'max:255',
-            'range' => 'max:255',
-        ]);
-        $input['create_user_id'] = Auth::user()->getAuthIdentifier();
-        $input['update_user_id'] = Auth::user()->getAuthIdentifier();
-        $plant = new Plants($input);
-
-        $plant->name = $input['name'];
-        $plant->description = empty($input['description']) ? '' : $input['description'];
-        $plant->tags = $input['tags'];
-        $plant->range = $input['range'];
-        $plant->create_user_id = $input['create_user_id'];
-        $plant->update_user_id = $input['update_user_id'];
-
-        if ($plant->save()) {
-            return redirect('/admin/plants');
-        }
     }
 
     /**
@@ -100,33 +77,7 @@ class PlantsController extends Controller
      */
     public function update(Request $request, Plants $plant)
     {
-        $input = $request->all();
-        $validator = Validator::make($input, [
-            'name' => 'required|max:255',
-            'description' => 'string',
-            'tags' => 'max:255',
-            'range' => 'max:255',
-        ]);
-
-        $input['create_user_id'] = Auth::user()->getAuthIdentifier();
-        $input['update_user_id'] = Auth::user()->getAuthIdentifier();
-
-        $plant->name = $input['name'];
-        $plant->description = empty($input['description']) ? '' : $input['description'];
-        $plant->tags = $input['tags'];
-        $plant->range = $input['range'];
-        $plant->create_user_id = $input['create_user_id'];
-        $plant->update_user_id = $input['update_user_id'];
-
-        if ($plant->update($input)) {
-            return redirect('/admin/plants/1')->with('plants.message',
-                ['type' => 'primary', 'message' => '"' . $plant->name . '" успешно обновлен']
-            );
-        } else {
-            return redirect('/admin/plants/1')->with('plants.message',
-                ['type' => 'danger', 'message' => '"' . $plant->name . '" не удалось обновить']
-            );
-        }
+        echo 'test';die;
     }
 
     /**

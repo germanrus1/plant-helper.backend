@@ -24,6 +24,7 @@ Route::resource('tree', TreeController::class);
 Auth::routes();
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+Route::get('/admin/plants/delete/{plant}', [PlantsController::class, 'destroy'])->name('plants.delete');
 Route::resource('/admin/plants', PlantsController::class);
 
 

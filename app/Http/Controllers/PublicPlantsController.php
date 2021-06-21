@@ -19,7 +19,7 @@ class PublicPlantsController extends Controller
      */
     public function index()
     {
-        return view('admin.plants.index', [
+        return view('public.index', [
             'plants' => Plants::all(),
         ]);
     }
